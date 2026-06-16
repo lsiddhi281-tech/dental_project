@@ -365,44 +365,25 @@ routers.get('/appointment_rejected',async(req,res)=>{
     var data = await query1(sql,['reject']);
     res.render("admin/appointment_rejected.ejs",{data:data});
 })
-// routers.get('/ap_search',async(req,res)=>{
-//     var sql1 = 'select * from services';
-//     var service = await query1(sql1);
-//     // res.send(req.query);
-//     var from_date = req.query.from_date;
-//     var to_date = req.query.to_date;
-//     var status = req.query.status;
-//     var service1 = req.query.service1;
-//     var sql = 'select * from appointment where (adate>=? and adate<=?) and status=? and sid=?';
-//     var data = await query1(sql,[from_date,to_date,status,service1]);
-//     res.send(data)
-//     // res.render("admin/appointment",{service:service,data:data});
-// })
 routers.get('/ap_search', async(req,res)=>{
-
     var sql1 = 'select * from services';
     var service = await query1(sql1);
-
     var {from_date,to_date,status,service1} = req.query;
-
-    var sql = 'select * from appointment where 1=1';
+    var sql = 'SELECT * FROM appointment LEFT JOIN services  ON appointment.sid = services.sid WHERE 1=1';
+    // var sql = 'select * from appointment where 1=1';
     var params = [];
-
     if(from_date && to_date){
         sql += ' and adate >= ? and adate <= ?';
         params.push(from_date,to_date);
     }
-
     if(status){
         sql += ' and status = ?';
         params.push(status);
     }
-
     if(service1){
         sql += ' and sid = ?';
         params.push(service1);
     }
-
     var data = await query1(sql,params);
 
     res.render("admin/appointment",{
