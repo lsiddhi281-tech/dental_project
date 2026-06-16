@@ -1,0 +1,32 @@
+<%- include('header.ejs') %>   
+      <main class="dashboard-content">
+        <div class="container-fluid px-3 px-lg-4 py-4">
+          <div class="page-heading">
+            <div class="page-heading-copy">
+              <span class="page-icon"><i class="bi bi-file-earmark" aria-hidden="true"></i></span>
+              <div>
+                <p class="eyebrow mb-1">Starter</p>
+                <h1 class="h3 mb-1">Our Medical Team Update</h1>
+                <p class="text-muted mb-0">A clean starter page for new admin screens.</p>
+              </div>
+            </div>
+            
+          </div>
+          
+
+          <section class="panel">
+            <form action="/admin/doctors_update_save/<%= data.dr_id %>" method="post" enctype="multipart/form-data">
+                <label>Doctor Photo : </label>
+                <input type="file" name="new_dr_photo" class="form-control mb-4">
+                <input hidden value="<%=data.dr_photo%>" name="old_dr_photo" class="form-control mb-4">
+                <img src="/<%=data.dr_photo%>" height="100px"><br>
+                <label>Doctor Name : </label>
+                <input type="text" value="<%=data.dr_name%>" name="dr_name" class="form-control mb-4">
+                <label>Speciality : </label>
+                <input type="text" value="<%=data.speciality%>" name="speciality" class="form-control mb-4">
+                <button class="btn btn-primary">Update</button>
+            </form>
+          </section>
+        </div>
+      </main>
+<%- include('footer.ejs') %>   

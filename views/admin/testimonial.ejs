@@ -1,0 +1,56 @@
+<%- include('header.ejs') %>   
+      <main class="dashboard-content">
+        <div class="container-fluid px-3 px-lg-4 py-4">
+          <div class="page-heading">
+            <div class="page-heading-copy">
+              <span class="page-icon"><i class="bi bi-file-earmark" aria-hidden="true"></i></span>
+              <div>
+                <p class="eyebrow mb-1">Starter</p>
+                <h1 class="h3 mb-1">Testimonial</h1>
+                <p class="text-muted mb-0">A clean starter page for new admin screens.</p>
+              </div>
+            </div>
+            
+          </div>
+          
+
+          <section class="panel">
+            <form action="/admin/testimonial_save" method="post" enctype="multipart/form-data">
+                <label>Photo : </label>
+                <input type="file" name="tphoto" class="form-control mb-4">
+                <label>Custumer Name : </label>
+                <input type="text" name="name" class="form-control mb-4">
+                <label>Profession : </label>
+                <input type="text" name="profession" class="form-control mb-4">
+                <label>Message :</label>
+                <input type="text" name="msg" class="form-control mb-4">
+                <button class="btn btn-primary">Save</button>
+            </form>
+
+            <table class="table table-border mt-5">
+                <tr>
+                    <th>Sr.No.</th>
+                    <th>Photo</th>
+                    <th>Custumer Name</th>
+                    <th>Profession</th>
+                    <th>Message</th>
+                    <th>status</th>
+                </tr>
+                <% for(var i=0; i<data.length; i++){ %>
+                <tr>
+                    <td><%= i+1 %></td>
+                    <td><img src="/<%= data[i].tphoto %>" height="80px"></td>
+                    <td><%= data[i].name %></td>
+                    <td><%= data[i].profession %></td>
+                    <td><%= data[i].msg %></td>
+                    <td>
+                        <a href="/admin/testimonial_edit/<%= data[i].tid %>"><button class="btn">Edit</button></a>
+                        <a href="/admin/testimonial_delete/<%= data[i].tid %>/<%= data[i].tphoto %>"><button class="btn">Delete</button></a>
+                    </td>
+                </tr>
+                <% } %>
+            </table>
+          </section>
+        </div>
+      </main>
+<%- include('footer.ejs') %>   

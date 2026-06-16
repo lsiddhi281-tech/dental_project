@@ -1,0 +1,48 @@
+<%- include('header.ejs') %>   
+      <main class="dashboard-content">
+        <div class="container-fluid px-3 px-lg-4 py-4">
+          <div class="page-heading">
+            <div class="page-heading-copy">
+              <span class="page-icon"><i class="bi bi-file-earmark" aria-hidden="true"></i></span>
+              <div>
+                <p class="eyebrow mb-1">Starter</p>
+                <h1 class="h3 mb-1">FAQ'S</h1>
+                <p class="text-muted mb-0">A clean starter page for new admin screens.</p>
+              </div>
+            </div>
+            
+          </div>
+          
+
+          <section class="panel">
+            <form action="/admin/faqs_save" method="post">
+                <label>Question : </label>
+                <input type="text" name="question" class="form-control mb-4">
+                <label>Answer :</label>
+                <input type="text" name="answer" class="form-control mb-4">
+                <button class="btn btn-primary">Save</button>
+            </form>
+
+            <table class="table table-border mt-5">
+                <tr>
+                    <th>Sr.No.</th>
+                    <th>Question</th>
+                    <th>Answer</th>
+                    <th>status</th>
+                </tr>
+                <% for(var i=0; i<data.length; i++){ %>
+                <tr>
+                    <td><%= i+1 %></td>
+                    <td><%= data[i].question %></td>
+                    <td><%= data[i].answer %></td>
+                    <td>
+                        <a href="/admin/faqs_edit/<%= data[i].fid %>"><button class="btn">Edit</button></a>
+                        <a href="/admin/faqs_delete/<%= data[i].fid %>"><button class="btn">Delete</button></a>
+                    </td>
+                </tr>
+                <% } %>
+            </table>
+          </section>
+        </div>
+      </main>
+<%- include('footer.ejs') %>   

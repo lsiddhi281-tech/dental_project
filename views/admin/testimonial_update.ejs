@@ -1,0 +1,34 @@
+<%- include('header.ejs') %>   
+      <main class="dashboard-content">
+        <div class="container-fluid px-3 px-lg-4 py-4">
+          <div class="page-heading">
+            <div class="page-heading-copy">
+              <span class="page-icon"><i class="bi bi-file-earmark" aria-hidden="true"></i></span>
+              <div>
+                <p class="eyebrow mb-1">Starter</p>
+                <h1 class="h3 mb-1">Testimonial Update</h1>
+                <p class="text-muted mb-0">A clean starter page for new admin screens.</p>
+              </div>
+            </div>
+            
+          </div>
+          
+
+          <section class="panel">
+            <form action="/admin/testimonial_update_save/<%= data.tid %>" method="post" enctype="multipart/form-data">
+                <label>Photo : </label>
+                <input type="file" name="new_tphoto" class="form-control mb-4">
+                <input hidden value="<%=data.tphoto%>" name="old_tphoto" class="form-control mb-4">
+                <img src="/<%=data.tphoto%>" height="100px"><br>
+                <label>Custumer Name : </label>
+                <input type="text" value="<%=data.name%>" name="name" class="form-control mb-4">
+                <label>Profession : </label>
+                <input type="text" value="<%=data.profession%>" name="profession" class="form-control mb-4">
+                <label>Message :</label>
+                <input type="text" value="<%=data.msg%>" name="msg" class="form-control mb-4">
+                <button class="btn btn-primary">Update</button>
+            </form>
+          </section>
+        </div>
+      </main>
+<%- include('footer.ejs') %>   
