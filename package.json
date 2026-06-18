@@ -1,4 +1,10 @@
 {
+  "name": "dental_project",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
     "body-parser": "^2.2.2",
     "ejs": "^6.0.1",
@@ -6,6 +12,6 @@
     "express-fileupload": "^1.5.2",
     "express-session": "^1.19.0",
     "mysql2": "^3.22.5",
-    "start": "nodemon app.js"
+    
   }
 }
